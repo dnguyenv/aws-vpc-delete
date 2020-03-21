@@ -14,7 +14,7 @@ const elb = new AWS.ELBv2({ apiVersion: '2015-12-01' });
 const elbClassic = new AWS.ELB();
 
 const yargsFunc = (yargs) => {
-  yargs.positional('vpc-id', { describe: 'ID of the VPC', default: null })
+  //yargs.positional('vpc-id', { describe: 'ID of the VPC', default: null })
 }
 
 yargs
@@ -35,7 +35,7 @@ yargs
     await deleteVPCEndpoints(argv.vpcId, argv.dryRun)
     await deleteVPC(argv.vpcId, argv.dryRun) // Remove VPC
     //await releaseEIPs(argv.vpcId, argv.dryRun) // Remove Instances
-    console.log('VPC Deleted');
+    //console.log('VPC Deleted');
   })
   .option('log-level', { describe: 'Log level (debug, trace, info, warn, error)', default: 'info' })
   .option('log-to-stdout', { describe: 'Output logs to STDOUT instead of STDERR', default: true })
@@ -270,7 +270,7 @@ async function deleteVPC (id, DryRun) {
   this.log.trace('Start deleting VPC')
   const params = { VpcId: id, DryRun };
   await $(ec2, 'deleteVpc', params, { allowedErrorCodes: 'InvalidVpcID.NotFound' })
-  this.log.info('VPC Deleted')
+  //this.log.info('VPC Deleted')
 }
 
 async function deleteSecurityGroups (vpcId, DryRun) {
